@@ -52,8 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Apply fade-in to sections, cards, and titles
-  document.querySelectorAll('.section, .skill-card, .edu-card, .timeline-item, .about-card, .lang-card, .cert-card, .section-title')
+  document.querySelectorAll('.section, .section-title')
     .forEach(el => el.classList.add('fade-in'));
+
+  // Cards stagger animation
+  document.querySelectorAll('.skill-card, .about-card, .edu-card, .lang-card, .cert-card, .timeline-item')
+    .forEach((el, i) => {
+      el.classList.add('fade-in');
+      el.style.transitionDelay = `${i * 0.06}s`;
+    });
 
   observeElements('.fade-in');
 

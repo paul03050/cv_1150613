@@ -755,6 +755,41 @@ body {
   margin-bottom: 0;
 }
 
+.bio-content h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 20px 0 10px;
+}
+
+.bio-content h4 {
+  font-size: .925rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 14px 0 6px;
+}
+
+.bio-content ul {
+  list-style: none;
+  margin-bottom: 12px;
+}
+
+.bio-content li {
+  font-size: .925rem;
+  color: var(--text-muted);
+  padding: 3px 0 3px 18px;
+  position: relative;
+  line-height: 1.7;
+}
+
+.bio-content li::before {
+  content: '\2022';
+  position: absolute;
+  left: 4px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .bio-collapse-btn {
   display: block;
   margin: 16px auto 0;

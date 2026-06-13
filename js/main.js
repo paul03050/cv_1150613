@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     els.forEach(el => observer.observe(el));
   };
 
-  // Apply fade-in to sections and cards
-  document.querySelectorAll('.section, .skill-card, .edu-card, .timeline-item, .about-card, .lang-card, .cert-card')
+  // Apply fade-in to sections, cards, and titles
+  document.querySelectorAll('.section, .skill-card, .edu-card, .timeline-item, .about-card, .lang-card, .cert-card, .section-title')
     .forEach(el => el.classList.add('fade-in'));
 
   observeElements('.fade-in');

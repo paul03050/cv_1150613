@@ -39,6 +39,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  z-index: 1001;
+  transition: width .1s linear;
+  pointer-events: none;
+}
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -127,6 +140,16 @@ body {
   padding: 8px;
 }
 
+/* ===== NAVBAR SCROLLED STATE ===== */
+.navbar.scrolled {
+  background: rgba(255,255,255,.98);
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+
+.navbar.scrolled .nav-container {
+  height: 56px;
+}
+
 /* ===== HERO ===== */
 .hero {
   position: relative;
@@ -180,6 +203,15 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.hero-avatar:hover img {
+  transform: scale(1.08);
+}
+
+.hero-avatar:hover {
+  box-shadow: 0 0 0 3px rgba(255,255,255,.9), 0 0 40px rgba(0,102,204,.3);
 }
 
 .hero-name {
@@ -536,6 +568,26 @@ body {
   font-size: .7rem;
 }
 
+/* ===== TIMELINE SLIDE ANIMATION ===== */
+.timeline-item.fade-in {
+  opacity: 0;
+  transform: translateY(0);
+  transition: opacity .5s ease-out, transform .5s ease-out;
+}
+
+.timeline-item.slide-left {
+  transform: translateX(-50px);
+}
+
+.timeline-item.slide-right {
+  transform: translateX(50px);
+}
+
+.timeline-item.fade-in.visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
 /* ===== EDUCATION / 學歷 ===== */
 .edu-grid {
   display: grid;
@@ -817,6 +869,39 @@ body {
   color: var(--text-muted);
   font-size: .85rem;
   background: linear-gradient(180deg, #fff, #f0f9ff);
+}
+
+/* ===== BACK TO TOP ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 6px 24px rgba(0,102,204,.15);
 }
 
 /* ===== SCROLL ANIMATION ===== */

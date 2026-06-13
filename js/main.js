@@ -31,6 +31,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ===== SCROLL PROGRESS BAR + NAVBAR SHRINK + BACK TO TOP ===== */
+  const progressBar = document.getElementById('scrollProgress');
+  const navbar = document.getElementById('navbar');
+  const backToTop = document.getElementById('backToTop');
+  const hero = document.getElementById('hero');
+
+  const onScroll = () => {
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+
+    // Progress bar
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+
+    // Navbar shrink
+    if (navbar) {
+      navbar.classList.toggle('scrolled', scrollY > 80);
+    }
+
+    // Back to top
+    if (backToTop && hero) {
+      const heroBottom = hero.offsetTop + hero.offsetHeight;
+      backToTop.classList.toggle('visible', scrollY > heroBottom);
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ===== BACK TO TOP CLICK ===== */
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /* ===== FADE-IN ON SCROLL ===== */
   const observeElements = (selector, options = {}) => {
     const els = document.querySelectorAll(selector);
@@ -51,15 +89,23 @@ document.addEventListener('DOMContentLoaded', () => {
     els.forEach(el => observer.observe(el));
   };
 
-  // Apply fade-in to sections, cards, and titles
+  // Apply fade-in to sections, section titles
   document.querySelectorAll('.section, .section-title')
     .forEach(el => el.classList.add('fade-in'));
 
   // Cards stagger animation
-  document.querySelectorAll('.skill-card, .about-card, .edu-card, .lang-card, .cert-card, .timeline-item')
+  document.querySelectorAll('.skill-card, .about-card, .edu-card, .lang-card, .cert-card')
     .forEach((el, i) => {
       el.classList.add('fade-in');
       el.style.transitionDelay = `${i * 0.06}s`;
+    });
+
+  // Timeline items: alternating slide direction + stagger
+  document.querySelectorAll('.timeline-item')
+    .forEach((el, i) => {
+      el.classList.add('fade-in');
+      el.classList.add(i % 2 === 0 ? 'slide-left' : 'slide-right');
+      el.style.transitionDelay = `${i * 0.08}s`;
     });
 
   observeElements('.fade-in');

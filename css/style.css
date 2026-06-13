@@ -729,7 +729,7 @@ body {
   border-radius: var(--radius);
   padding: 32px;
   line-height: 1.8;
-  max-height: 600px;
+  max-height: 2000px;
   overflow: hidden;
   transition: max-height .5s ease;
 }
